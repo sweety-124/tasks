@@ -12,6 +12,34 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.item {
+  flex-basis: calc(33.3333% - 20px);
+  padding: 20px;
+  background-color: #f0f0f0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 14px;
+  color: #666;
+}
 
 .App-header {
   background-color: #282c34;
