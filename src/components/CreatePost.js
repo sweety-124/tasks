@@ -56,9 +56,19 @@ export default function CreatePost(props) {
                     onChange={(e) => setBody(e.target.value)}
                     className="post-form-textarea"
                 ></textarea>
+                <div style={{display: 'flex',
+  justifyContent: 'space-between'}}>
+      <Link to={`/`}>
+    <button  className="post-form-back">
+                    Back
+                </button>
+                </Link>
                 <button type="submit" className="post-form-button">
                     Submit
                 </button>
+                
+                
+                </div>
             </form>
         </div>
     );

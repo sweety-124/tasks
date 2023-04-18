@@ -88,9 +88,11 @@ export function confirmedUpdatePostAction(post) {
 
 export function updatePostAction(post, id) {
     return (dispatch, getState) => {
+        console.log('updateeeee',id)
         updatePost(post, id).then((reponse) => {
             dispatch(confirmedUpdatePostAction(post));
-            // history.push('/posts');
+            
+            // history.push('/');
         });
     };
 }

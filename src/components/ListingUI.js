@@ -69,8 +69,8 @@ const ListingUI = () => {
           // below props only if you need pull down functionality
         >
           <div className="list">
-            {listPosts?.map(item => (
-              <div className="item" key={item?.id}>
+            {listPosts?.map((item,index)=> (
+              <div className="item" key={index}>
                 <h2 className="title">{item?.title}</h2>
                 <p className="description">{item?.body}</p>
                 <div className="icons">

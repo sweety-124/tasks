@@ -11,7 +11,7 @@ export default function EditPost(props) {
     const dispatch = useDispatch();
     const { state } = location
     useEffect(() => {
-        console.log('state',state.from.title);
+        console.log('state',state);
         setTitle(state.from.title)
         setBody(state.from.body)
     },[])
@@ -25,10 +25,9 @@ export default function EditPost(props) {
             body
         };
 
-        dispatch(updatePostAction(postData,state.from.id));
+        dispatch(updatePostAction(postData,Number(state.from.id)+1));
         // Reset form fields after submission
-        setTitle("");
-        setBody("");
+    
     };
     // const handleSubmit = (e) => {
     //   e.preventDefault();
@@ -50,7 +49,8 @@ export default function EditPost(props) {
 
     return (
         <div className="post-form-container">
-            <h1>Edit Post</h1>
+            {/* <h1>`Edit${Number(state.from.id)+1)}`</h1> */}
+               <h1>{`Edit ${state.from.title}`}</h1>
             <form className="post-form" onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -63,14 +63,27 @@ export default function EditPost(props) {
                 />
                 <textarea
                     placeholder="Content"
+                    style={{height: '143px',
+                        width: '478px'}}
                     defaultValue={state.from.body}
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
                     className="post-form-textarea"
                 ></textarea>
+                <div style={{display: 'flex',
+  justifyContent: 'space-between'}}>
+      <Link to={`/`}>
+    <button  className="post-form-back">
+                    Back
+                </button>
+                </Link>
                 <button type="submit" className="post-form-button">
                     Submit
                 </button>
+                
+                
+                </div>
+                
             </form>
         </div>
     );
