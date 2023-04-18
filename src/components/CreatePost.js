@@ -24,8 +24,7 @@ export default function CreatePost(props) {
         const handleSubmit = (e) => {
           e.preventDefault();
           // Handle form submission logic here
-          console.log("Title:", title);
-          console.log("Content:", body);
+          
           const postData = {
             title,
             body,

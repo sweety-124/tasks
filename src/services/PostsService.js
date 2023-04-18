@@ -1,7 +1,6 @@
 import axiosInstance from './AxiosInstance';
 
 export function getPosts() {
-    console.log('rrrrr')
     return axiosInstance.get(`/posts?_start=0&_limit=5`);
 }
 
@@ -16,7 +15,9 @@ export function updatePost(post, postId) {
 export function deletePost(postId) {
     return axiosInstance.delete(`posts/${postId}.json`);
 }
-
+export function getPostById(postId) {
+    return axiosInstance.get(`posts/${postId}`);
+}
 export function formatPosts(postsData) {
     let posts = [];
     for (let key in postsData) {

@@ -4,12 +4,14 @@ import {
     getPosts,
     deletePost,
     updatePost,
+    getPostById
 } from '../../services/PostsService';
 import {
     CONFIRMED_CREATE_POST_ACTION,
     CONFIRMED_DELETE_POST_ACTION,
     CONFIRMED_EDIT_POST_ACTION,
     CONFIRMED_GET_POSTS,
+    CONFIRMED_GET_POSTS_BY_ID
 } from './PostTypes';
 
 export function deletePostAction(postId, history) {
@@ -27,9 +29,14 @@ export function confirmedDeletePostAction(postId) {
         payload: postId,
     };
 }
-
+export function confirmedGetPostActionById(postData) {
+    return {
+        type: CONFIRMED_GET_POSTS_BY_ID,
+        payload: postData,
+    };
+}
 export function createPostAction(postData) {
-    console.log('data',postData)
+   
     return (dispatch, getState) => {
         createPost(postData).then((response) => {
             const singlePost = {
@@ -43,17 +50,20 @@ export function createPostAction(postData) {
 }
 
 export function getPostsAction() {
-    console.log('88888888')
     return (dispatch, getState) => {
         getPosts().then((response) => {
-            console.log('resssssssss',response)
             let posts = formatPosts(response.data);
-            console.log('dataaaaa',posts)
             dispatch(confirmedGetPostsAction(posts));
         });
     };
 }
-
+export function getPostsActionById(id) {
+    return (dispatch, getState) => {
+        getPostById(id).then((response) => {
+            dispatch(confirmedGetPostActionById(response.data));
+        });
+    };
+}
 export function confirmedCreatePostAction(singlePost) {
     return {
         type: CONFIRMED_CREATE_POST_ACTION,

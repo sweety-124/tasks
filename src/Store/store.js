@@ -9,8 +9,6 @@ import thunk from 'redux-thunk';
 
 
 const loggerMiddleware = (store) => (next) => (action) => {
-    console.log('dispatching action', action);
-    console.log('before dispatching state', store.getState());
     let result = next(action);
     setTimeout(() => {
         console.log('dispatch time out');

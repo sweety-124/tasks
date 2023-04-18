@@ -4,10 +4,12 @@ import {
     CONFIRMED_EDIT_POST_ACTION,
     CONFIRMED_GET_POSTS,
     CREATE_POST_ACTION,
+    CONFIRMED_GET_POSTS_BY_ID
 } from '../actions/PostTypes';
 
 const initialState = {
     posts: [],
+    getPostById:{}
 };
 
 export default function PostsReducer(state = initialState, actions) {
@@ -62,11 +64,16 @@ export default function PostsReducer(state = initialState, actions) {
             posts,
         };
     }
-
     if (actions.type === CONFIRMED_GET_POSTS) {
         return {
             ...state,
             posts: actions.payload,
+        };
+    }
+    if (actions.type === CONFIRMED_GET_POSTS_BY_ID) {
+        return {
+            ...state,
+            getPostById: actions.payload,
         };
     }
     return state;

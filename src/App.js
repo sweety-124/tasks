@@ -10,8 +10,7 @@ import {
 } from "react-router-dom";
 import { lazy, Suspense, useEffect } from 'react';
 import CreatePost from './components/CreatePost';
-import EditPost from './components/EditPost';
-
+import EditPost from './components/editPost';
 function App() {
  
   return (

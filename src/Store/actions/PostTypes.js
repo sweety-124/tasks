@@ -8,3 +8,5 @@ export const CONFIRMED_EDIT_POST_ACTION =
     '[Post Action] Confirmed Edit Post';
 export const CONFIRMED_DELETE_POST_ACTION =
     '[Post Action] Confirmed Delete Post';
+    export const CONFIRMED_GET_POSTS_BY_ID =
+    '[Post Action] Confirmed Get Post By Id';
