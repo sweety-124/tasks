@@ -1,26 +1,55 @@
-import React from 'react';
-
+import React, { useEffect,useState } from 'react';
+import { store } from '../Store/store';
+import { Connect, connect } from 'react-redux';
+import {
+  createPostAction,
+  getPostsAction,
+  deletePostAction,
+} from '../Store/actions/PostActions';
+import Header from '../components/Header';
 const ListingUI = () => {
-  const items = [
-    { id: 1, title: 'Item 1', description: 'Description for Item 1' },
-    { id: 2, title: 'Item 2', description: 'Description for Item 2' },
-    { id: 3, title: 'Item 3', description: 'Description for Item 3' },
-    { id: 4, title: 'Item 4', description: 'Description for Item 4' },
-    { id: 5, title: 'Item 5', description: 'Description for Itemsss 5' }
-  ];
+  
 
+  const [posts, setPost] = useState([]);
+
+  useEffect(()=>{
+    store.dispatch(getPostsAction())
+   const listPosts = store.getState()
+   setPost(listPosts.posts.posts)
+    console.log('####################',listPosts)
+  },[])
+  const handleEdit=(id)=>{
+
+  }
+  const handleDelete=(id)=>{
+
+  }
   return (
+    <>
+  
     <div className="container">
-      <h1>Listing UI</h1>
-      <div className="list">
-        {items.map(item => (
-          <div className="item" key={item.id}>
-            <h2 className="title">{item.title}</h2>
-            <p className="description">{item.description}</p>
-          </div>
-        ))}
-      </div>
+    {/* <header className="header">
+    <Header/>
+  </header>  */}
+    <div className="list">
+      {posts?.map(item => (
+        <div className="item" key={item.id}>
+          <h2 className="title">{item.title}</h2>
+          <p className="description">{item.body}</p>
+          <div className="icons">
+          <span className="edit-icon" onClick={() => handleEdit(item.id)}>
+           
+          </span>
+          <span className="close-icon" onClick={() => handleDelete(item.id)}>
+         
+          </span>
+        </div>
+        </div>
+      ))}
     </div>
+  </div>
+    </>
+   
   );
 };
 

@@ -27,7 +27,7 @@
 .item {
   flex-basis: calc(33.3333% - 20px);
   padding: 20px;
-  background-color: #f0f0f0;
+  background-color: #0778d2;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -38,7 +38,7 @@
 
 .description {
   font-size: 14px;
-  color: #666;
+  color: #000;
 }
 
 .App-header {
@@ -63,4 +63,89 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* ===============================ICONS STYLE =====================================================*/
+
+.edit-icon,
+.close-icon {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+  background-size: cover;
+}
+
+/* Edit Icon */
+.edit-icon {
+  background-image: url('./images/edit.png'); /* Replace with your edit icon image path */
+}
+
+/* Close Icon */
+.close-icon {
+  background-image: url('./images/delete.png'); /* Replace with your close icon image path */
+}
+
+/* Icon Hover Effect */
+.edit-icon:hover,
+.close-icon:hover {
+  opacity: 0.8;
+}
+
+/* Icon Container */
+.icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* ===================================================Custom Button=========================================================== */
+/* Button.css */
+
+.custom-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+.custom-button:hover {
+  background-color: #0056b3;
+  
+}
+
+/* ===================================================Header css=================================================================== */
+.header {
+  background-color: #333;
+  color: #fff;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header .nav {
+  display: flex;
+}
+
+.header .nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 16px;
+}
+
+.header .nav a:hover {
+  text-decoration: underline;
 }
