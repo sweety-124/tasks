@@ -1,7 +1,7 @@
 import axiosInstance from './AxiosInstance';
 
-export function getPosts() {
-    return axiosInstance.get(`/posts?_start=0&_limit=5`);
+export function getPosts(page) {
+    return axiosInstance.get(`/posts?_start=${(page * 5)}&_limit=5`);
 }
 
 export function createPost(postData) {
@@ -9,11 +9,11 @@ export function createPost(postData) {
 }
 
 export function updatePost(post, postId) {
-    return axiosInstance.put(`posts/${postId}.json`, post);
+    return axiosInstance.put(`posts/${postId}`, post);
 }
 
 export function deletePost(postId) {
-    return axiosInstance.delete(`posts/${postId}.json`);
+    return axiosInstance.delete(`posts/${postId}`);
 }
 export function getPostById(postId) {
     return axiosInstance.get(`posts/${postId}`);

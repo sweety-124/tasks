@@ -18,7 +18,7 @@ export function deletePostAction(postId, history) {
     return (dispatch, getState) => {
         deletePost(postId).then((response) => {
             dispatch(confirmedDeletePostAction(postId));
-            history.push('/posts');
+            // history.push('/posts');
         });
     };
 }
@@ -49,11 +49,12 @@ export function createPostAction(postData) {
     };
 }
 
-export function getPostsAction() {
-    return (dispatch, getState) => {
-        getPosts().then((response) => {
+export function getPostsAction(page) {
+    return(dispatch, getState) => {
+        getPosts(page).then((response) => {
             let posts = formatPosts(response.data);
-            dispatch(confirmedGetPostsAction(posts));
+            console.log('sdddddddddddd',posts)
+            return dispatch(confirmedGetPostsAction(posts));
         });
     };
 }
@@ -85,11 +86,11 @@ export function confirmedUpdatePostAction(post) {
     };
 }
 
-export function updatePostAction(post, history) {
+export function updatePostAction(post, id) {
     return (dispatch, getState) => {
-        updatePost(post, post.id).then((reponse) => {
+        updatePost(post, id).then((reponse) => {
             dispatch(confirmedUpdatePostAction(post));
-            history.push('/posts');
+            // history.push('/posts');
         });
     };
 }

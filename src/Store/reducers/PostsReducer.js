@@ -9,7 +9,7 @@ import {
 
 const initialState = {
     posts: [],
-    getPostById:{}
+    getPostById: {}
 };
 
 export default function PostsReducer(state = initialState, actions) {
@@ -56,7 +56,7 @@ export default function PostsReducer(state = initialState, actions) {
     }
 
     if (actions.type === CONFIRMED_CREATE_POST_ACTION) {
-        const posts = [...state.posts];
+        let posts = [...state.posts];
         posts.push(actions.payload);
 
         return {
@@ -65,12 +65,15 @@ export default function PostsReducer(state = initialState, actions) {
         };
     }
     if (actions.type === CONFIRMED_GET_POSTS) {
+        console.log('sweeeeeee',actions.payload)
+        let posts = [...state.posts , ...actions.payload];
         return {
             ...state,
-            posts: actions.payload,
+            posts:posts,
         };
     }
     if (actions.type === CONFIRMED_GET_POSTS_BY_ID) {
+        console.log('different',actions,state)
         return {
             ...state,
             getPostById: actions.payload,
@@ -78,3 +81,5 @@ export default function PostsReducer(state = initialState, actions) {
     }
     return state;
 }
+
+
