@@ -4,72 +4,63 @@ import { Link } from 'react-router-dom';
 import { createPostAction } from '../Store/actions/PostActions';
 
 export default function CreatePost(props) {
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+    const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
 
     const dispatch = useDispatch();
-    useEffect(()=>{
-        console.log('7777777')
-    })
-    function onCreatePost(e) {
-        e.preventDefault();
-        const postData = {
+
+    // function onCreatePost(e) {
+    //     e.preventDefault();
+    //     const postData = {
+    //         title,
+    //         description,
+    //     };
+
+    //     dispatch(createPostAction(postData, props.history));
+    // }
+
+       
+      
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          // Handle form submission logic here
+          console.log("Title:", title);
+          console.log("Content:", body);
+          const postData = {
             title,
-            description,
+            body,
         };
 
-        dispatch(createPostAction(postData, props.history));
-    }
+        dispatch(createPostAction(postData));
+          // Reset form fields after submission
+          setTitle("");
+          setBody("");
+        };
 
+      
+    
     return (
-        <div>
-            <div className='flex items-center justify-between my-4'>
-                <h2>Create Post</h2>
-                <div>
-                    <Link
-                        to='/posts'
-                        className='bg-gray-500 text-white p-2'
-                    >
-                        Back to Posts
-                    </Link>
-                </div>
-            </div>
-
-            <div>
-                <form onSubmit={onCreatePost}>
-                    <div>
-                        <label>Title</label>
-                        <div>
-                            <input
-                                type='text'
-                                className='border border-gray-500 w-full px-1'
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                            />
-                        </div>
-                    </div>
-                    <div className='my-2'>
-                        <label>Description</label>
-                        <div>
-                            <textarea
-                                value={description}
-                                onChange={(e) =>
-                                    setDescription(e.target.value)
-                                }
-                                className='border border-gray-500 w-full px-1 h-28'
-                            />
-                        </div>
-                    </div>
-                    <div>
-                        <button
-                            type='submit'
-                            className='px-2 py-1 bg-red-500 text-white'
-                        >
-                            Create Post
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    );
+        <div className="post-form-container">
+        <h1>Create New Post</h1>
+        <form onSubmit={handleSubmit} className="post-form">
+          <input
+            type="text"
+            
+            placeholder="Title"
+             value={title}
+             onChange={(e) => setTitle(e.target.value)}
+            className="post-form-input"
+          />
+          <textarea
+            placeholder="Content"
+             value={body}
+             onChange={(e) => setBody(e.target.value)}
+            className="post-form-textarea"
+          ></textarea>
+          <button type="submit" className="post-form-button">
+            Submit
+          </button>
+        </form>
+      </div>
+          );
 }

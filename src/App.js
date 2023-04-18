@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import { lazy, Suspense, useEffect } from 'react';
 import CreatePost from './components/CreatePost';
-
+import EditPost from './components/EditPost';
 
 function App() {
  
@@ -20,7 +20,7 @@ function App() {
   <Routes>
         <Route path='/posts' element={<ListingUI/>} />
         <Route path='/posts/createpost' element={<CreatePost/>} />
-
+        <Route path='/posts/editPost' element={<EditPost/>} />
         
     </Routes>
    </BrowserRouter>

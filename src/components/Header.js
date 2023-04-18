@@ -23,12 +23,12 @@ const Header = () => {
     <nav className="nav">
     <>
     <Link
-                                to={{ pathname: `/createpost` }}
+                                to={{ pathname: `/posts/createpost` }}
                                 
                             >
-                                {/* <button className="custom-button"  >
+                                <button className="custom-button"  >
       Create
-    </button>  */}
+    </button> 
                             </Link>
      </>
     </nav>

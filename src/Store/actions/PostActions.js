@@ -28,15 +28,16 @@ export function confirmedDeletePostAction(postId) {
     };
 }
 
-export function createPostAction(postData, history) {
+export function createPostAction(postData) {
+    console.log('data',postData)
     return (dispatch, getState) => {
         createPost(postData).then((response) => {
             const singlePost = {
                 ...postData,
-                id: response.data.name,
+             
             };
             dispatch(confirmedCreatePostAction(singlePost));
-            history.push('/posts');
+            
         });
     };
 }

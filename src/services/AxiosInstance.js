@@ -2,7 +2,7 @@ import axios from 'axios';
 import { store } from '../Store/store';
 
 const axiosInstance = axios.create({
-    baseURL: `https://jsonplaceholder.typicode.com/posts/`,
+    baseURL: `https://jsonplaceholder.typicode.com`,
 });
 
 // axiosInstance.interceptors.request.use((config) => {

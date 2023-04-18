@@ -149,3 +149,37 @@
 .header .nav a:hover {
   text-decoration: underline;
 }
+/* ============================================POst form============================================================= */
+
+.post-form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.post-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.post-form-input,
+.post-form-textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.post-form-button {
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.post-form-button:hover {
+  background-color: #0056b3;
+}

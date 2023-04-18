@@ -2,11 +2,11 @@ import axiosInstance from './AxiosInstance';
 
 export function getPosts() {
     console.log('rrrrr')
-    return axiosInstance.get(`?_start=0&_limit=5`);
+    return axiosInstance.get(`/posts?_start=0&_limit=5`);
 }
 
 export function createPost(postData) {
-    return axiosInstance.post(`posts.json`, postData);
+    return axiosInstance.post(`/posts`,postData);
 }
 
 export function updatePost(post, postId) {

@@ -1,74 +1,66 @@
 import { useEffect, useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
-import { updatePostAction } from '../../store/actions/PostActions';
-import { getPost } from '../../store/selectors/PostSelectors';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { createPostAction } from '../Store/actions/PostActions';
 
-function EditPost() {
-    const [post, setPost] = useState([]);
+export default function EditPost(props) {
+    const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        setPost(props.post);
-    }, [props.post]);
+    // function onCreatePost(e) {
+    //     e.preventDefault();
+    //     const postData = {
+    //         title,
+    //         description,
+    //     };
 
-    function onUpdatePost(e) {
-        e.preventDefault();
-        dispatch(updatePostAction(post, props.history));
-    }
+    //     dispatch(createPostAction(postData, props.history));
+    // }
 
+       
+      
+        const handleSubmit = (e) => {
+          e.preventDefault();
+          // Handle form submission logic here
+          console.log("Title:", title);
+          console.log("Content:", body);
+          const postData = {
+            title,
+            body,
+        };
+
+        dispatch(createPostAction(postData));
+          // Reset form fields after submission
+          setTitle("");
+          setBody("");
+        };
+
+      
+    
     return (
-        <div>
-            <div>Edit Post</div>
-            <div>
-                <form onSubmit={onUpdatePost}>
-                    <div className='my-2'>
-                        <label>Title</label>
-                        <div>
-                            <input
-                                type='text'
-                                className='border border-gray-500 p-1 w-full'
-                                value={post.title}
-                                onChange={(e) =>
-                                    setPost({
-                                        ...post,
-                                        title: e.target.value,
-                                    })
-                                }
-                            />
-                        </div>
-                    </div>
-
-                    <div className='my-2'>
-                        <label>Description</label>
-                        <div>
-                            <textarea
-                                className='border border-gray-500 p-1 w-full'
-                                value={post.description}
-                                onChange={(e) =>
-                                    setPost({
-                                        ...post,
-                                        description: e.target.value,
-                                    })
-                                }
-                            ></textarea>
-                        </div>
-                    </div>
-
-                    <div>
-                        <button
-                            type='submit'
-                            className='bg-red-500 text-white px-3 py-2'
-                        >
-                            Edit Post
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    );
+        <div className="post-form-container">
+        <h1>Create New Post</h1>
+        <form onSubmit={handleSubmit} className="post-form">
+          <input
+            type="text"
+            
+            placeholder="Title"
+             value={title}
+             onChange={(e) => setTitle(e.target.value)}
+            className="post-form-input"
+          />
+          <textarea
+            placeholder="Content"
+             value={body}
+             onChange={(e) => setBody(e.target.value)}
+            className="post-form-textarea"
+          ></textarea>
+          <button type="submit" className="post-form-button">
+            Submit
+          </button>
+        </form>
+      </div>
+          );
 }
-
-
-
-export default EditPost;
