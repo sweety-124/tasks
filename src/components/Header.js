@@ -10,25 +10,31 @@ import {
 } from '../Store/actions/PostActions';
 import { useNavigate, Link } from 'react-router-dom';
 const Header = () => {
-
-    //     const navigate = useNavigate();
-    //   const createPost=(id)=>{
-    //     navigate.push('/createpost');
+    const header = document.querySelector('header');
+    
+    let pathname = window.location.pathname
+    useEffect(()=>{
+        
+        console.log('ssssss',pathname)
+    },[pathname])
 
     return (
         <>
 
-            <h1>Posts</h1>
-            <div className="logo">List </div>
+           
+            <div className="logo">Post </div>
             <nav className="nav">
                 <>
                     <Link
                         to={{ pathname: `/posts/createpost` }}
 
                     >
-                        <button className="custom-button"  >
-                            Create
-                        </button>
+                        {
+ <button className="custom-button"  >
+ Create
+</button>
+                        }
+                       
                     </Link>
                 </>
             </nav>

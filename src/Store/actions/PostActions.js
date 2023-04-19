@@ -14,11 +14,21 @@ import {
     CONFIRMED_GET_POSTS_BY_ID
 } from './PostTypes';
 
+// export function deletePostAction(postId, history) {
+//     return (dispatch, getState) => {
+//         deletePost(postId).then((response) => {
+//             dispatch(confirmedDeletePostAction(postId));
+//             // history.push('/posts');
+//         });
+//     };
+// }
 export function deletePostAction(postId, history) {
     return (dispatch, getState) => {
-        deletePost(postId).then((response) => {
+        return deletePost(postId).then((response) => {
             dispatch(confirmedDeletePostAction(postId));
-            // history.push('/posts');
+            return response;
+        }).catch((error) => {
+            console.log(error); // log any errors to the console
         });
     };
 }
@@ -35,19 +45,32 @@ export function confirmedGetPostActionById(postData) {
         payload: postData,
     };
 }
-export function createPostAction(postData) {
+// export function createPostAction(postData) {
    
-    return (dispatch, getState) => {
-        createPost(postData).then((response) => {
-            const singlePost = {
-                ...postData,
+//     return (dispatch, getState) => {
+//         createPost(postData).then((response) => {
+//             const singlePost = {
+//                 ...postData,
              
-            };
-            dispatch(confirmedCreatePostAction(singlePost));
+//             };
+//             dispatch(confirmedCreatePostAction(singlePost));
             
-        });
+//         });
+//     };
+// }
+export function createPostAction(postData) {
+    return (dispatch, getState) => {
+      // Return the Promise from the createPost function
+      return createPost(postData).then((response) => {
+        const singlePost = {
+          ...postData,
+        };
+        dispatch(confirmedCreatePostAction(singlePost));
+        // Return the response data
+        return response;
+      });
     };
-}
+  }
 
 export function getPostsAction(page) {
     return(dispatch, getState) => {
@@ -85,14 +108,15 @@ export function confirmedUpdatePostAction(post) {
         payload: post,
     };
 }
-
 export function updatePostAction(post, id) {
     return (dispatch, getState) => {
-        console.log('updateeeee',id)
-        updatePost(post, id).then((reponse) => {
-            dispatch(confirmedUpdatePostAction(post));
-            
-            // history.push('/');
-        });
+      // Return the Promise from the updatePost function
+      return updatePost(post, id).then((response) => {
+        dispatch(confirmedUpdatePostAction(post));
+        // Return the response data
+        return response;
+      });
     };
-}
+  }
+
+

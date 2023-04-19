@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { store } from '../Store/store';
-import { Connect, connect, useSelector } from 'react-redux';
+import { Connect, useDispatch, useSelector } from 'react-redux';
 import {
   createPostAction,
   getPostsAction,
   deletePostAction,
 } from '../Store/actions/PostActions';
-import Header from '../components/Header';
+
 import { useNavigate, Link } from 'react-router-dom';
 import { postSelector, selectPost } from '../Store/selectors/PostSelectors';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import Alert from './Alert';
 const ListingUI = () => {
 
   const [hasMore , sethasMore] = useState(true)
-  
+  const [showAlert, setShowAlert] = useState(false);
   const [isLoading , setLoading] = useState(false)
 
   const [page , setPage] = useState(0)
+  const dispatch = useDispatch();
   
 
   async function fetchData() {
@@ -41,19 +43,27 @@ const ListingUI = () => {
   const listPosts = useSelector(postSelector)
 
   const handleDelete = (id) => {
-    store.dispatch(deletePostAction(id))
+    dispatch(deletePostAction(id)).then((response)=>{
+      console.log('responseeee',response)
+      if(response.status==200)
+      {
+          setShowAlert(true);
+
+          setTimeout(() => {
+              setShowAlert(false);
+          }, 3000);
+      }
+    })
   }
 
  
   return (
     <>
-      {console.log(listPosts, "REDUCT")}
+      
 
       <div className="container">
 
-        <header className="header">
-          <Header />
-        </header>
+       
 
 
         <InfiniteScroll
@@ -88,6 +98,9 @@ const ListingUI = () => {
           </div>
 
         </InfiniteScroll>
+        {showAlert && (
+        <Alert type="success" message="Deleted Successfully!" typeAction="delete"  />
+      )}
       </div>
     </>
 

@@ -12,13 +12,14 @@ import {
 import { lazy, Suspense, useEffect } from 'react';
 import CreatePost from './components/CreatePost';
 import EditPost from './components/editPost';
+import Header from './components/Header';
 function App() {
  
   return (
     <div className="App">
   <BrowserRouter>
   <Routes>
-      <Route path="/">
+      <Route path="/" element={<Layout type={window.location}  />}>
         <Route  index element={<ListingUI/>} />
         <Route path='/posts/createpost' element={<CreatePost/>} />
         <Route path='/posts/editPost' element={<EditPost/>} />
@@ -37,10 +38,12 @@ function Layout() {
       {/* A "layout route" is a good place to put markup you want to
           share across all the pages on your site, like navigation. */}
       <nav>
-        
+      <header className="header">
+          <Header />
+        </header>
       </nav>
 
-      <hr />
+  
 
       {/* An <Outlet> renders whatever child route is currently active,
           so you can think about this <Outlet> as a placeholder for

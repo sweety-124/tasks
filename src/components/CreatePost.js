@@ -2,24 +2,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createPostAction } from '../Store/actions/PostActions';
+import Alert from './Alert';
 
 export default function CreatePost(props) {
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
-
+    const [showAlert, setShowAlert] = useState(false);
     const dispatch = useDispatch();
-
-    // function onCreatePost(e) {
-    //     e.preventDefault();
-    //     const postData = {
-    //         title,
-    //         description,
-    //     };
-
-    //     dispatch(createPostAction(postData, props.history));
-    // }
-
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -29,8 +18,20 @@ export default function CreatePost(props) {
             title,
             body,
         };
+        dispatch(createPostAction(postData)).then((response) => {
+           
+             // Log the response data
+            // Update the component's state with the response data
+            if(response.status==201)
+            {
+                setShowAlert(true);
 
-        dispatch(createPostAction(postData));
+                setTimeout(() => {
+                    setShowAlert(false);
+                }, 3000);
+            }
+          });
+       
         // Reset form fields after submission
         setTitle("");
         setBody("");
@@ -70,6 +71,9 @@ export default function CreatePost(props) {
                 
                 </div>
             </form>
+            { showAlert && (
+        <Alert type="success" message="Successfully Created!" typeAction='create' />
+      )}
         </div>
     );
 }
