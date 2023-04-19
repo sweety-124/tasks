@@ -65,7 +65,6 @@ export default function PostsReducer(state = initialState, actions) {
         };
     }
     if (actions.type === CONFIRMED_GET_POSTS) {
-        console.log('sweeeeeee',actions.payload)
         let posts = [...state.posts , ...actions.payload];
         return {
             ...state,
@@ -73,7 +72,6 @@ export default function PostsReducer(state = initialState, actions) {
         };
     }
     if (actions.type === CONFIRMED_GET_POSTS_BY_ID) {
-        console.log('different',actions,state)
         return {
             ...state,
             getPostById: actions.payload,

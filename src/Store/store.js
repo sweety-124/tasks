@@ -17,13 +17,6 @@ const loggerMiddleware = (store) => (next) => (action) => {
     return result;
 };
 
-// const fetchDataMiddleware = (store) => (next) => (action) => {
-//     if (action.type === GET_POSTS) {
-//         //ajax call
-//     }
-
-//     return next(action);
-// };
 
 const middleware = applyMiddleware(thunk);
 
